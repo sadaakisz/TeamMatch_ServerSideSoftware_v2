@@ -56,7 +56,7 @@ public class Profile {
     @Size(max = 30)
     private Date birthDate;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(mappedBy = "profile")
     @JsonIgnore
     private Player player;
 }

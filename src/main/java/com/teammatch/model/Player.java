@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "players")
@@ -33,4 +34,12 @@ public class Player {
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     @JsonIgnore
     private Profile profile;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "players_games",
+            joinColumns = {@JoinColumn(name = "player_id")},
+            inverseJoinColumns = {@JoinColumn(name = "game_id")})
+    @JsonIgnore
+    List<Game> games;
 }
