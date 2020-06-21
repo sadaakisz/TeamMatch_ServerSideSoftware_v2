@@ -33,4 +33,6 @@ public class Player {
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     @JsonIgnore
     private Profile profile;
+
+    //TODO: Agregar relación 1 a muchos con Filter
 }
