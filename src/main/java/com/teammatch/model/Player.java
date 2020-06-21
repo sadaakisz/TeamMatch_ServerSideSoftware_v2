@@ -1,5 +1,6 @@
 package com.teammatch.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,9 +29,8 @@ public class Player {
 
     private int hours;
 
-    //Relationship
-    //@OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "profile_id", referencedColumnName = "id")
-    //@JsonIgnore
-    //private Profile profile;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Profile profile;
 }
