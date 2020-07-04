@@ -1,0 +1,89 @@
+public class Profile implements Cloneable {
+
+    public String fullName;
+    public String userName;
+    public String description;
+    public String gender;
+    public String emailAdress;
+    public String phoneNumber;
+   
+
+
+    public Profile() {
+    }
+
+    public Object clone() {
+        Object clone = null;
+        try {
+            clone = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return clone;
+    }
+
+    public Profile creaPrototype(){
+        Profile p = new Profile();
+        p.setFullname(this.fullName);
+        p.setUserName(this.userName);
+        p.setDescription(this.description);
+        p.setGender(this.gender);
+        p.setEmailAdress(this.emailAdress);
+        p.setPhoneNumber(this.phoneNumber);
+
+        System.out.println("Creado prototipo de Profile");
+        return p;
+    }
+
+
+    public String getFullname() {
+        return fullName;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullName = fullname;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String UserName) {
+        this.userName = UserName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String Description) {
+        this.description = Description;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String Gender) {
+        this.gender = Gender;
+    }
+
+    public String getEmailAdress() {
+        return emailAdress;
+    }
+
+    public void setEmailAdress(String EmailAdress) {
+        this.emailAdress = EmailAdress;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String PhoneNumber) {
+        this.phoneNumber = PhoneNumber;
+    }
+
+
+
+}
