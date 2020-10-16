@@ -2,6 +2,7 @@ package com.teammatch.controller;
 
 import com.teammatch.resource.ProfileResource;
 import com.teammatch.resource.SaveProfileResource;
+import com.teammatch.service.PlayerService;
 import com.teammatch.service.ProfileService;
 import org.modelmapper.ModelMapper;
 import com.teammatch.model.Profile;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/players")
 
 public class ProfileController {
 
@@ -27,32 +28,28 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @GetMapping("/profiles")
-    public Page<ProfileResource> getAllPlayers(Pageable pageable) {
-        Page<Profile> profilesPage = profileService.getAllProfiles(pageable);
-        List<ProfileResource> resources = profilesPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
+    @Autowired
+    private PlayerService playerService;
 
-        return new PageImpl<>(resources, pageable, resources.size());
+    @GetMapping("{id}/profiles")
+    public ProfileResource getProfileByPlayerId(@PathVariable(name = "id") Long playerId) {
+        return convertToResource(profileService.getProfileById(playerId));
     }
 
-    @GetMapping("/profiles/{id}")
-    public ProfileResource getProfileById(@PathVariable(name = "id") Long profileId) {
-        return convertToResource(profileService.getProfileById(profileId));
-    }
-
-    @PostMapping("/profiles")
-    public ProfileResource createProfile(@Valid @RequestBody SaveProfileResource resource)  {
+    @PostMapping("{id}/profiles")
+    public ProfileResource createProfile(@PathVariable(name = "id") Long playerId, @Valid @RequestBody SaveProfileResource resource)  {
         Profile profile = convertToEntity(resource);
+        profile.setId(playerId);
         return convertToResource(profileService.createProfile(profile));
     }
 
-    @PutMapping("/profiles/{id}")
-    public ProfileResource updateProfile(@PathVariable(name = "id") Long profileId, @Valid @RequestBody SaveProfileResource resource) {
+    @PutMapping("{id}/profiles")
+    public ProfileResource updateProfile(@PathVariable(name = "id") Long playerId, @Valid @RequestBody SaveProfileResource resource) {
         Profile profile = convertToEntity(resource);
-        return convertToResource(profileService.updateProfile(profileId, profile));
+        return convertToResource(profileService.updateProfile(playerId, profile));
     }
 
-    @DeleteMapping("/profiles/{id}")
+    @DeleteMapping("{id}/profiles")
     public ResponseEntity<?> deleteProfile(@PathVariable(name = "id") Long profileId) {
         return profileService.deleteProfile(profileId);
     }
