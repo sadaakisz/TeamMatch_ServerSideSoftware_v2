@@ -10,6 +10,8 @@ import java.util.Date;
 @Data
 
 public class SaveProfileResource {
+    private Long id;
+
     @NotBlank
     @NotNull
     @Size(max = 20)

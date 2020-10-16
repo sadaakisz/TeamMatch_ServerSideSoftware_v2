@@ -16,8 +16,8 @@ import java.util.Date;
 @Setter
 
 public class Profile {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -59,4 +59,9 @@ public class Profile {
     @OneToOne(mappedBy = "profile")
     @JsonIgnore
     private Player player;
+
+    public Profile setId(Long id) {
+        this.id = id;
+        return this;
+    }
 }
