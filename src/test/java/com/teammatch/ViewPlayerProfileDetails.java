@@ -11,14 +11,13 @@ public class ViewPlayerProfileDetails {
     public String player_username;
     public String profile_details;
 
-    @Given("I am a {string} user")
+    @Given("I am a {string} User")
     public void iAmARegisteredUser(String registered) {
         this.registered = registered;
-        if (registered == "Not registered"){
+        if (registered.equals("Not registered")){
             this.logged_in = "Logged out";
         }
     }
-
     @And("I have {string}")
     public void iHaveLoggedIn(String logged_in) {
         this.logged_in = logged_in;
@@ -38,5 +37,4 @@ public class ViewPlayerProfileDetails {
         this.profile_details = profile_details;
         this.player_username = player_username;
     }
-
 }
