@@ -1,7 +1,7 @@
 Feature: View Player Profile Details
 
   Scenario Outline: View details of a player profile that was found
-    Given I am a <registered> user
+    Given I am a <registered> User
     And I have <logged in>
     And I have made the search for players according to my filters
     When I select a <player username> that could complete my team
