@@ -16,28 +16,28 @@ public class SeeTeamSummary {
     private String team;
     private String description;
 
-    @Given("I have {string} account registered")
+    @Given("I have my account {string}")
     public void iHaveRegisterAccountRegistered(String registered) {
         this.registered = registered;
     }
 
-    @And("I have logged in with an {string}")
-    public void iHaveLoggedInWithAnUsername(String Username) {
+    @And("I have my account {string} logged in")
+    public void iHaveMyAccountUsernameLoggedIn(String username) {
         if(this.registered.equals("an")){
-            this.username = Username;
+            this.username = username;
         }
         else if(this.registered.equals("no")){
             this.username="error";
         }
-        assertEquals(this.username, Username);
+        assertEquals(this.username, username);
     }
 
-    @And("I select the option of Search Teams")
-    public void iSelectTheOptionOfSearchTeams() {
+    @And("I search for Teams")
+    public void iSearchForTeams() {
     }
 
-    @And("I have registered {string} filters")
-    public void iHaveRegisteredF_amountFilters(String filters) {
+    @And("I have inputted {string} filters")
+    public void iHaveInputtedF_amountFilters(String filters) {
         if(this.username.equals("error")){
             this.filters = "error";
         }
@@ -47,8 +47,8 @@ public class SeeTeamSummary {
         assertEquals(this.filters, filters);
     }
 
-    @When("I see a {string} that interest me")
-    public void iSeeATeamThatInterestMe(String Team) {
+    @When("I see a {string} that caught my attention")
+    public void iSeeATeamThatCaughtMyAttention(String Team) {
         if(this.filters.equals("error")){
             this.team = "error";
         }
