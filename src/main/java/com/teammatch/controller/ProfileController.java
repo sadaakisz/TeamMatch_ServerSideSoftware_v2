@@ -1,5 +1,6 @@
 package com.teammatch.controller;
 
+import com.teammatch.model.Player;
 import com.teammatch.resource.ProfileResource;
 import com.teammatch.resource.SaveProfileResource;
 import com.teammatch.service.PlayerService;
@@ -34,6 +35,11 @@ public class ProfileController {
     @GetMapping("{id}/profiles")
     public ProfileResource getProfileByPlayerId(@PathVariable(name = "id") Long playerId) {
         return convertToResource(profileService.getProfileById(playerId));
+    }
+
+    @GetMapping("{playerUsername}/profilesUsername")
+    public ProfileResource getProfileByPlayerUsername(@PathVariable(name = "playerUsername") String playerUsername) {
+        return convertToResource(profileService.getProfileByUsername(playerUsername));
     }
 
     @PostMapping("{id}/profiles")

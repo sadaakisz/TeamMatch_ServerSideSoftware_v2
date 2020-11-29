@@ -48,6 +48,12 @@ public class ProfileServiceImpl implements ProfileService{
     }
 
     @Override
+    public Profile getProfileByUsername(String username) {
+        return profileRepository.findByUsername(username);
+    }
+
+
+    @Override
     public Page<Profile> getAllProfiles(Pageable pageable) {
         return profileRepository.findAll(pageable);
     }

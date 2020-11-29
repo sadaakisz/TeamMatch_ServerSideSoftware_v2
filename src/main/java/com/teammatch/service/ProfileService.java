@@ -10,5 +10,6 @@ public interface ProfileService {
     Profile updateProfile(Long profileId, Profile profileRequest);
     Profile createProfile(Profile profile);
     Profile getProfileById(Long profileId);
+    Profile getProfileByUsername(String username);
     Page<Profile> getAllProfiles(Pageable pageable);
 }
