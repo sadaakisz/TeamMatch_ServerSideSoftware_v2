@@ -17,6 +17,4 @@ public class SavePlayerResource {
     @NotBlank
     @Size(max = 100)
     private String password;
-
-    private int hours;
 }
