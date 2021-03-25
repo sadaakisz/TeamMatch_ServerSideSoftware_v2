@@ -11,15 +11,12 @@ public class SaveTeamResource {
     @NotBlank
     private String teamName;
 
-    @NotBlank
     @NotNull
     private int teamSize;
 
-    @NotBlank
     @NotNull
     float average;
 
-    @NotBlank
     @NotNull
     float hoursPlayed;
 }
