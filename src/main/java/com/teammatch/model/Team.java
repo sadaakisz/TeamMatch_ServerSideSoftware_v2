@@ -42,5 +42,8 @@ public class Team {
     @JsonIgnore
     private List<Player> players;
 
-    // TODO: Agregar relación 1 a muchos con Filter
+    //One to One Filter
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "filter_id", referencedColumnName = "id")
+    private Filter filter;
 }
