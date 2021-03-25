@@ -51,4 +51,10 @@ public class Player {
     inverseJoinColumns = {@JoinColumn(name = "chat_id")})
     @JsonIgnore
     List<Chat> chats;
+
+    //One to One Filter
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "filter_id", referencedColumnName = "id")
+    private Filter filter;
+
 }

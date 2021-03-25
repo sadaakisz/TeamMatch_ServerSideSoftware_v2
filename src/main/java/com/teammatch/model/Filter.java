@@ -1,5 +1,6 @@
 package com.teammatch.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,5 +45,12 @@ public class Filter {
     @NotNull
     private float rating;
 
+    //One To One with Player and Team
+    @OneToOne(mappedBy = "filter")
+    @JsonIgnore
+    private Player player;
 
+    @OneToOne(mappedBy = "filter")
+    @JsonIgnore
+    private Team team;
 }
