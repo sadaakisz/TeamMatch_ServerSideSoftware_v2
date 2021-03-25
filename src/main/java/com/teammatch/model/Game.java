@@ -23,8 +23,7 @@ public class Game {
     @NotNull
     @Size(max = 20)
     private String name;
-
-    @NotBlank
+    
     @NotNull
     private int gameTeamSize;
 
