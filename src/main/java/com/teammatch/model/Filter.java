@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -23,9 +21,11 @@ public class Filter {
     @Size(max = 50)
     private String game;
 
-    @NotBlank
     @NotNull
-    private int age;
+    private int minAge;
+
+    @NotNull
+    private int maxAge;
 
     @NotBlank
     @NotNull
@@ -34,14 +34,17 @@ public class Filter {
 
     @NotBlank
     @NotNull
-    @Size(max = 100)
-    private String gameStyle;
+    @Size(max = 50)
+    private String country;
 
     @NotBlank
     @NotNull
+    @Size(max = 100)
+    private String gameStyle;
+
+    @NotNull
     private int accountLevel;
 
-    @NotBlank
     @NotNull
     private float rating;
 

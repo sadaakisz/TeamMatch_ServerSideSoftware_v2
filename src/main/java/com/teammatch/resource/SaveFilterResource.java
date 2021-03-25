@@ -2,9 +2,7 @@ package com.teammatch.resource;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 public class SaveFilterResource {
@@ -13,9 +11,15 @@ public class SaveFilterResource {
     @NotNull
     private String game;
 
-    @NotBlank
     @NotNull
-    private int age;
+    @Min(value = 13, message = "Age should not be less than 13")
+    @Max(value = 100, message = "Age should not be greater than 100")
+    private int minAge;
+
+    @NotNull
+    @Min(value = 13, message = "Age should not be less than 13")
+    @Max(value = 100, message = "Age should not be greater than 100")
+    private int maxAge;
 
     @NotBlank
     @NotNull
@@ -24,14 +28,17 @@ public class SaveFilterResource {
 
     @NotBlank
     @NotNull
-    @Size(max = 100)
-    private String gameStyle;
+    @Size(max = 50)
+    private String country;
 
     @NotBlank
     @NotNull
+    @Size(max = 100)
+    private String gameStyle;
+
+    @NotNull
     private int accountLevel;
 
-    @NotBlank
     @NotNull
     private float rating;
 }

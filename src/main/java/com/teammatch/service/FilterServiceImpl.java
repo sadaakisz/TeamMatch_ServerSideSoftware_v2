@@ -29,9 +29,11 @@ public class FilterServiceImpl implements FilterService{
                 .orElseThrow(() -> new ResourceNotFoundException("Filter", "Id", filterId));
         filter.setGame(filterRequest.getGame());
         filter.setAccountLevel(filterRequest.getAccountLevel());
-        filter.setAge(filterRequest.getAge());
+        filter.setMinAge(filterRequest.getMinAge());
+        filter.setMaxAge(filterRequest.getMaxAge());
         filter.setGameStyle(filterRequest.getGameStyle());
         filter.setRegion(filterRequest.getRegion());
+        filter.setCountry(filterRequest.getCountry());
         filter.setRating((filterRequest.getRating()));
         return filterRepository.save(filter);
     }
