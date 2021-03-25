@@ -2,6 +2,7 @@ package com.teammatch.service;
 
 import com.teammatch.exception.ResourceNotFoundException;
 import com.teammatch.model.Profile;
+import com.teammatch.repository.PlayerRepository;
 import com.teammatch.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Service;
 public class ProfileServiceImpl implements ProfileService{
     @Autowired
     private ProfileRepository profileRepository;
+
+    @Autowired
+    private PlayerRepository playerRepository;
 
     @Override
     public ResponseEntity<?> deleteProfile(Long profileId) {
@@ -37,7 +41,8 @@ public class ProfileServiceImpl implements ProfileService{
     }
 
     @Override
-    public Profile createProfile(Profile profile) {
+    public Profile createProfile(Long playerId, Profile profile) {
+        this.validatePlayer(playerId);
         return profileRepository.save(profile);
     }
 
@@ -56,5 +61,13 @@ public class ProfileServiceImpl implements ProfileService{
     @Override
     public Page<Profile> getAllProfiles(Pageable pageable) {
         return profileRepository.findAll(pageable);
+    }
+
+    public void validatePlayer(Long playerId) {
+        if(!playerRepository.existsById(playerId)){
+            throw new ResourceNotFoundException(
+                    "Player not found with Id " + playerId
+            );
+        }
     }
 }

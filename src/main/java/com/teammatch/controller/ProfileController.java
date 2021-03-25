@@ -46,7 +46,7 @@ public class ProfileController {
     public ProfileResource createProfile(@PathVariable(name = "id") Long playerId, @Valid @RequestBody SaveProfileResource resource)  {
         Profile profile = convertToEntity(resource);
         profile.setId(playerId);
-        return convertToResource(profileService.createProfile(profile));
+        return convertToResource(profileService.createProfile(playerId, profile));
     }
 
     @PutMapping("{id}/profiles")
