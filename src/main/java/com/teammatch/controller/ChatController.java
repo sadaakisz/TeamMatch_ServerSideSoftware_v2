@@ -4,6 +4,9 @@ import com.teammatch.model.Chat;
 import com.teammatch.resource.ChatResource;
 import com.teammatch.resource.SaveChatResource;
 import com.teammatch.service.ChatService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api")
+@Tag(name = "Chats", description = "Chats API")
 public class ChatController {
 
     @Autowired

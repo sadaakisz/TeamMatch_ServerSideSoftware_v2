@@ -4,6 +4,7 @@ import com.teammatch.model.Team;
 import com.teammatch.resource.SaveTeamResource;
 import com.teammatch.resource.TeamResource;
 import com.teammatch.service.TeamService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/")
+@Tag(name = "Teams", description = "Team API")
 public class TeamController {
     @Autowired
     ModelMapper mapper;

@@ -4,6 +4,7 @@ import com.teammatch.model.Message;
 import com.teammatch.resource.MessageResource;
 import com.teammatch.resource.SaveMessageResource;
 import com.teammatch.service.MessageService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Messages", description = "Message API")
 public class MessageController {
 
     @Autowired
