@@ -7,6 +7,7 @@ import com.teammatch.resource.PlayerResource;
 import com.teammatch.resource.SaveFilterResource;
 import com.teammatch.resource.SavePlayerResource;
 import com.teammatch.service.FilterService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Filters", description = "Filter API")
 public class FilterController {
     @Autowired
     private ModelMapper mapper;

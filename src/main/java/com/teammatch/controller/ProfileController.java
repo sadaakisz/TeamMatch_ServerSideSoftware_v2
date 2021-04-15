@@ -5,6 +5,7 @@ import com.teammatch.resource.ProfileResource;
 import com.teammatch.resource.SaveProfileResource;
 import com.teammatch.service.PlayerService;
 import com.teammatch.service.ProfileService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import com.teammatch.model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/players")
-
+@Tag(name = "Profiles", description = "Profile API")
 public class ProfileController {
 
     @Autowired
