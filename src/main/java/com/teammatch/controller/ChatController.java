@@ -30,6 +30,7 @@ public class ChatController {
     private ChatService chatService;
 
     @GetMapping("/chats")
+    @Operation(summary = "Get All Chats", description = "Get All Chats from TeamMatch", tags = { "chats" })
     public Page<ChatResource> getAllChats(Pageable pageable) {
         List<ChatResource> chats = chatService.getAllChats(pageable)
                 .getContent().stream().map(this::convertToResource).collect(Collectors.toList());
@@ -38,11 +39,13 @@ public class ChatController {
     }
 
     @GetMapping("/chats/{id}")
+    @Operation(summary = "Get Chat By Id", description = "Get Chat by specific Id", tags = { "chats" })
     public ChatResource getChatById(@PathVariable(name = "id") Long chatId) {
         return convertToResource(chatService.getChatById(chatId));
     }
 
     @GetMapping("/players/{playerId}/chats")
+    @Operation(summary = "Get All Chats by Player", description = "Get All Chats by Player Id", tags = { "chats, player" })
     public Page<ChatResource> getAllChatsByPlayerId(@PathVariable(name = "playerId") Long playerId, Pageable pageable) {
         List<ChatResource> chats = chatService.getAllChatsByPlayerId(playerId, pageable).getContent().stream().map(this::convertToResource).collect(Collectors.toList());
         int chatCount = chats.size();
@@ -50,6 +53,8 @@ public class ChatController {
     }
 
     @PostMapping("/chats")
+    @Operation(summary = "Create chat", description = "Create a new chat from a Player", tags = { "chats, player" })
+    //TODO: Chat not related to a player.
     public ChatResource createChat(@Valid @RequestBody SaveChatResource resource) {
         return convertToResource(chatService.createChat(convertToEntity(resource)));
     }
