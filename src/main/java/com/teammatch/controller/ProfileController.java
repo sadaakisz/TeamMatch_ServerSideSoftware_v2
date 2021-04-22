@@ -5,6 +5,7 @@ import com.teammatch.resource.ProfileResource;
 import com.teammatch.resource.SaveProfileResource;
 import com.teammatch.service.PlayerService;
 import com.teammatch.service.ProfileService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import com.teammatch.model.Profile;
@@ -34,16 +35,19 @@ public class ProfileController {
     private PlayerService playerService;
 
     @GetMapping("{id}/profiles")
+    @Operation(summary = "Get Profile by Player Id", description = "Get Profile by the Player Id from Teammatch", tags = { "profiles" })
     public ProfileResource getProfileByPlayerId(@PathVariable(name = "id") Long playerId) {
         return convertToResource(profileService.getProfileById(playerId));
     }
 
     @GetMapping("{playerUsername}/profilesUsername")
+    @Operation(summary = "Get Profile by Player Username", description = "Get Profile by the Player Username from Teammatch", tags = { "profiles" })
     public ProfileResource getProfileByPlayerUsername(@PathVariable(name = "playerUsername") String playerUsername) {
         return convertToResource(profileService.getProfileByUsername(playerUsername));
     }
 
     @PostMapping("{id}/profiles")
+    @Operation(summary = "Create  Profile", description = "Create a new profile from player", tags = { "profiles" })
     public ProfileResource createProfile(@PathVariable(name = "id") Long playerId, @Valid @RequestBody SaveProfileResource resource)  {
         Profile profile = convertToEntity(resource);
         profile.setId(playerId);
@@ -51,12 +55,14 @@ public class ProfileController {
     }
 
     @PutMapping("{id}/profiles")
+    @Operation(summary = "Update Profile", description = "Update a Profile from player", tags = { "profiles" })
     public ProfileResource updateProfile(@PathVariable(name = "id") Long playerId, @Valid @RequestBody SaveProfileResource resource) {
         Profile profile = convertToEntity(resource);
         return convertToResource(profileService.updateProfile(playerId, profile));
     }
 
     @DeleteMapping("{id}/profiles")
+    @Operation(summary = "Delete a Profile", description = "Delete  a profile from player", tags = { "profiles" })
     public ResponseEntity<?> deleteProfile(@PathVariable(name = "id") Long profileId) {
         return profileService.deleteProfile(profileId);
     }
