@@ -7,6 +7,7 @@ import com.teammatch.resource.PlayerResource;
 import com.teammatch.resource.SaveGameResource;
 import com.teammatch.resource.SavePlayerResource;
 import com.teammatch.service.GameService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping("/games")
-    public Page<GameResource> getAllPlayers(Pageable pageable) {
+    public Page<GameResource> getAllGames(Pageable pageable) {
         Page<Game> gamesPage = gameService.getAllGames(pageable);
         List<GameResource> resources = gamesPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
 
