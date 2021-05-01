@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/players")
+@CrossOrigin
 @Tag(name = "Profiles", description = "Profile API")
 public class ProfileController {
 

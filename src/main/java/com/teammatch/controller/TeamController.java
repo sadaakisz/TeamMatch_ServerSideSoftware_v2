@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/")
+@CrossOrigin
 @Tag(name = "Teams", description = "Team API")
 public class TeamController {
     @Autowired

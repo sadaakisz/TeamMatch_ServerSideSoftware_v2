@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 @Tag(name = "Filters", description = "Filter API")
 public class FilterController {
     @Autowired
