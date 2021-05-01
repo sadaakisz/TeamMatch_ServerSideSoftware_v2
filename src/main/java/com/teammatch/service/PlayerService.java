@@ -10,5 +10,7 @@ public interface PlayerService {
     Player updatePlayer(Long playerId, Player playerRequest);
     Player createPlayer(Player player);
     Player getPlayerById(Long playerId);
+    Player getPlayerByUsername(String username);
     Page<Player> getAllPlayers(Pageable pageable);
+    Player login(Player player);
 }
