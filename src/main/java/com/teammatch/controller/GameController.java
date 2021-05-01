@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 @Tag(name = "Games", description = "Game API")
 public class GameController {
     @Autowired

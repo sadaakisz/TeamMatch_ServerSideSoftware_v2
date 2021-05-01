@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 @Tag(name = "Messages", description = "Message API")
 public class MessageController {
 
