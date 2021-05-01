@@ -68,6 +68,17 @@ public class PlayerController {
         return playerService.deletePlayer(playerId);
     }
 
+    @GetMapping("/playersUsername/{username}")
+    public PlayerResource getUserByUsername(@PathVariable(name = "username") String username) {
+        return convertToResource(playerService.getPlayerByUsername(username));
+    }
+
+    @PostMapping("/login")
+    public PlayerResource login(@Valid @RequestBody SavePlayerResource resource)  {
+        Player player = convertToEntity(resource);
+        return convertToResource(playerService.login(player));
+    }
+
     private Player convertToEntity(SavePlayerResource resource) {
         return mapper.map(resource, Player.class);
     }
