@@ -29,7 +29,7 @@ public class Player {
     private String password;
 
     @NotNull
-    private int hours = 0;
+    private int hours;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
