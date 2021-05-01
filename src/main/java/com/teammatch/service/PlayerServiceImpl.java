@@ -48,4 +48,28 @@ public class PlayerServiceImpl implements PlayerService{
         return playerRepository.save(player);
     }
 
+    @Override
+    public Player getPlayerByUsername(String username){
+        Player myplayer = playerRepository.findByUsername(username);
+        if(myplayer == null){
+            Player player = new Player();
+            return player;
+        }
+        else{
+            return myplayer;
+        }
+    }
+
+    @Override
+    public Player login(Player playerRequest) {
+        Player myPlayer = playerRepository.findByUsername(playerRequest.getUsername());
+        if(myPlayer == null){
+            return playerRequest;
+        }
+        if(playerRequest.getPassword().equals(myPlayer.getPassword())){
+            return myPlayer;
+        }
+        return playerRequest;
+    }
+
 }
