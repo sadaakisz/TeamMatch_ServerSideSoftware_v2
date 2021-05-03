@@ -13,4 +13,5 @@ public interface PlayerService {
     Player getPlayerByUsername(String username);
     Page<Player> getAllPlayers(Pageable pageable);
     Player login(Player player);
+    Player updateLastConnection(Long playerId);
 }
