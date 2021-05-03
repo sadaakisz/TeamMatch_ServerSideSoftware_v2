@@ -21,4 +21,8 @@ public class SavePlayerResource {
     @NotNull
     @NotBlank
     private int hours;
+
+    @NotNull
+    @NotBlank
+    private String last_connection;
 }

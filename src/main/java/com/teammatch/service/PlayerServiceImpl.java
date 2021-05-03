@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 @Service
 public class PlayerServiceImpl implements PlayerService{
@@ -27,6 +29,10 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Override
     public Player createPlayer(Player player) {
+        Date last_connection = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String string_last_connection = formatter.format(last_connection);
+        player.setLast_connection(string_last_connection);
         return playerRepository.save(player);
     }
 
@@ -45,7 +51,7 @@ public class PlayerServiceImpl implements PlayerService{
         player.setUsername(playerRequest.getUsername());
         player.setPassword(playerRequest.getPassword());
         player.setHours(playerRequest.getHours());
-        return playerRepository.save(player);
+        return playerRepository.save(updateLastConnection(player.getId()));
     }
 
     @Override
@@ -67,9 +73,20 @@ public class PlayerServiceImpl implements PlayerService{
             return playerRequest;
         }
         if(playerRequest.getPassword().equals(myPlayer.getPassword())){
-            return myPlayer;
+            return updateLastConnection(myPlayer.getId());
         }
         return playerRequest;
     }
 
+    @Override
+    public Player updateLastConnection(Long playerId) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Player", "Id", playerId));
+
+        Date last_connection = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String string_last_connection = formatter.format(last_connection);
+        player.setLast_connection(string_last_connection);
+        return playerRepository.save(player);
+    }
 }
