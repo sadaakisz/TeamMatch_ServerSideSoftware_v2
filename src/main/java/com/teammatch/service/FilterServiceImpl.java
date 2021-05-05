@@ -2,7 +2,9 @@ package com.teammatch.service;
 
 import com.teammatch.exception.ResourceNotFoundException;
 import com.teammatch.model.Filter;
+import com.teammatch.model.Player;
 import com.teammatch.repository.FilterRepository;
+import com.teammatch.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,9 @@ public class FilterServiceImpl implements FilterService{
 
     @Autowired
     private FilterRepository filterRepository;
+
+    @Autowired
+    private PlayerRepository playerRepository;
 
     @Override
     public ResponseEntity<?> deleteFilter(Long filterId) {
@@ -50,5 +55,28 @@ public class FilterServiceImpl implements FilterService{
     @Override
     public Page<Filter> getAllFilters(Pageable pageable) {
         return filterRepository.findAll(pageable);
+    }
+
+    @Override
+    public Filter createFiltersByPlayerId(Long playerId, Filter filterRequest) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Filter", "Id", playerId));
+        Filter filter = new Filter();
+        filter.setGame(filterRequest.getGame());
+        filter.setAccountLevel(filterRequest.getAccountLevel());
+        filter.setAge(filterRequest.getAge());
+        filter.setGameStyle(filterRequest.getGameStyle());
+        filter.setRegion(filterRequest.getRegion());
+        filter.setRating((filterRequest.getRating()));
+        player.setFilter(filter);
+        return filterRepository.save(filter);
+    }
+
+    @Override
+    public Filter getFiltersByPlayerId(Long playerId) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Filter", "Id", playerId));
+
+        return player.getFilter();
     }
 }
