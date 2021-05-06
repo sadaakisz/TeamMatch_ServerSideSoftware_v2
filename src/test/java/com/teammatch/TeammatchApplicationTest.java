@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @CucumberOptions(plugin = {"pretty"},features = {"classpath:features/"},
         glue = {"com.teammatch"})
 
-public class TeammatchApplicationTests {
+public class TeammatchApplicationTest {
 
 
 }
