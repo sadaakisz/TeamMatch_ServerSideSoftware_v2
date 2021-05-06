@@ -11,4 +11,6 @@ public interface FilterService {
     Filter createFilter(Filter filter);
     Filter getFilterById(Long filterId);
     Page<Filter> getAllFilters(Pageable pageable);
+    Filter createFiltersByPlayerId(Long playerId, Filter filterRequest);
+    Filter getFiltersByPlayerId(Long playerId);
 }
