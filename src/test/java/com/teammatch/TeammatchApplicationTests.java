@@ -11,7 +11,7 @@ import org.junit.runner.notification.Failure;
 @CucumberOptions(plugin = {"pretty"},features = {"classpath:features/"},
         glue = {"com.teammatch"})
 
-public class runTest {
+public class TeammatchApplicationTests {
 
 
 }
