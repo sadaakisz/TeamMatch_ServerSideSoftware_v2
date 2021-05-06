@@ -28,5 +28,8 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
-      - name: Run the Maven verify phase
+      - name: Cucumber Testing
+        run: mvn test
+      - name: Maven Build
         run: mvn --batch-mode --update-snapshots verify
+        
