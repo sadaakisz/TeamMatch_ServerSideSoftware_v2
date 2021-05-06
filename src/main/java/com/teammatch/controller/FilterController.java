@@ -1,11 +1,8 @@
 package com.teammatch.controller;
 
 import com.teammatch.model.Filter;
-import com.teammatch.model.Player;
 import com.teammatch.resource.FilterResource;
-import com.teammatch.resource.PlayerResource;
 import com.teammatch.resource.SaveFilterResource;
-import com.teammatch.resource.SavePlayerResource;
 import com.teammatch.service.FilterService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
@@ -61,6 +58,16 @@ public class FilterController {
         return filterService.deleteFilter(filterId);
     }
 
+    @PostMapping("/players/{id}/filters")
+    public FilterResource createFiltersByPlayerId(@PathVariable(name = "id") Long playerId, @Valid @RequestBody SaveFilterResource resource)  {
+        Filter filters = convertToEntity(resource);
+        return convertToResource(filterService.createFiltersByPlayerId(playerId, filters));
+    }
+
+    @GetMapping("/players/{id}/filters")
+    public FilterResource getFiltersByPlayerId(@PathVariable(name = "id") Long playerId)  {
+        return convertToResource(filterService.getFiltersByPlayerId(playerId));
+    }
 
     private Filter convertToEntity(SaveFilterResource resource) {
         return mapper.map(resource, Filter.class);
