@@ -1,5 +1,7 @@
 package com.teammatch.UnitTests;
 
+import com.teammatch.TeammatchApplicationTest;
+import com.teammatch.TeammatchApplicationTests;
 import com.teammatch.exception.ResourceNotFoundException;
 import com.teammatch.model.Filter;
 import com.teammatch.repository.FilterRepository;
@@ -20,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
-public class FilterServiceImplIntegrationTest extends TeammatchApplicationTest {
+public class FilterServiceImplIntegrationTest extends TeammatchApplicationTests {
 
     @Autowired
     private FilterService filterService;

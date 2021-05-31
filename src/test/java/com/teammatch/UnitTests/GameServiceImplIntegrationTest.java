@@ -1,6 +1,7 @@
 package com.teammatch.UnitTests;
 
 import com.teammatch.TeammatchApplicationTest;
+import com.teammatch.TeammatchApplicationTests;
 import com.teammatch.exception.ResourceNotFoundException;
 import com.teammatch.model.Game;
 import com.teammatch.repository.GameRepository;
@@ -22,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 @ExtendWith(SpringExtension.class)
-public class GameServiceImplIntegrationTest extends TeammatchApplicationTest {
+public class GameServiceImplIntegrationTest extends TeammatchApplicationTests {
     @MockBean
     private GameRepository gameRepository;
 
