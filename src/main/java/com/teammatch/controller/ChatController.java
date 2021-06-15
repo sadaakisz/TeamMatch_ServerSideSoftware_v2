@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/api")
 @CrossOrigin
 @Tag(name = "Chats", description = "Chats API")
-public class ChatController {
+public class ChatController { 
 
     @Autowired
     private ModelMapper mapper;
